@@ -1,3 +1,6 @@
+class FLUR_BURGER():
+    name = 'Флюоресцентный бессмертный бургер'
+    ingredients = [ "61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa6f"]
 
 CREATE_USER_WITHOUT_PASS = {
     "email": "Elena@yandex.ru",
@@ -10,7 +13,7 @@ FAKE_LOGIN_AND_PASS = {
     }
 
 CREATE_ORDER_INGREDIENTS = {
-    "ingredients": [ "61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa6f"]
+    "ingredients": FLUR_BURGER.ingredients
     }
 
 CREATE_ORDER_WITHOUT_INGREDIENTS ={}
