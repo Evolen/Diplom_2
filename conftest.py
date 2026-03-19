@@ -5,33 +5,33 @@ from api_methods.user_methods import UserMethods
 
 @pytest.fixture(scope="function")
 def create_user():
-    user_body = generate_random_user_dict()
-    response = UserMethods.create_user(body = user_body)
-    yield user_body
-    user_login= {
-        "email": user_body["email"],
-        "password": user_body["password"]
+    create_user_body = generate_random_user_dict()
+    create_user_response = UserMethods.create_user(body = create_user_body)
+    yield create_user_body
+    login_user_body = {
+        "email": create_user_body["email"],
+        "password": create_user_body["password"]
     }
-    response = UserMethods.login_user(body = user_login)
-    access_token = response.json()["accessToken"]
+    login_user_response = UserMethods.login_user(body = login_user_body)
+    access_token = login_user_response.json()["accessToken"]
     headers = {
         "Authorization": access_token
     }
-    response = UserMethods.delete_user(headers)
+    delete_user_response = UserMethods.delete_user(headers = headers)
     
 
 @pytest.fixture(scope="function")
 def login_user():
-    user_body = generate_random_user_dict()
-    response = UserMethods.create_user(body = user_body)
-    user_login= {
-        "email": user_body["email"],
-        "password": user_body["password"]
+    create_user_body = generate_random_user_dict()
+    create_user_response = UserMethods.create_user(body = create_user_body)
+    login_user_body = {
+        "email": create_user_body["email"],
+        "password": create_user_body["password"]
     }
-    response = UserMethods.login_user(body = user_login)
-    access_token = response.json()["accessToken"]
+    login_user_response = UserMethods.login_user(body = login_user_body)
+    access_token = login_user_response.json()["accessToken"]
     headers = {
         "Authorization": access_token
     }
     yield headers
-    response = UserMethods.delete_user(headers)
+    delete_user_response = UserMethods.delete_user(headers = headers)
